@@ -36,56 +36,58 @@ Diff = A ⊕ B ⊕ Bin
 
 Borrow out = A'Bin + A'B + BBin
 
-
-
 **Truthtable**
 
+Full Adder
 
-![image](https://github.com/user-attachments/assets/9a60d688-62fd-4b3b-bacb-a6c76eb1d2f0)
+![WhatsApp Image 2024-11-28 at 10 56 17_b5082baa](https://github.com/user-attachments/assets/4d067f86-95f5-42ba-b297-7b0ac29da290)
 
+Full Subtractor
 
-**Procedure**
+![WhatsApp Image 2024-11-28 at 10 55 54_dd14f54f](https://github.com/user-attachments/assets/00b5a05c-d04a-4a8f-b9e2-7f432ffade06)
 
-1. Type the program in Quartus software.
-
-2. Compile and run the program.
-
-3. Generate the RTL schematic and save the logic diagram.
-
-4. Create nodes for inputs and outputs to generate the timing diagram.
-
-5. For different input combinations generate the timing diagram.
 
 **Program:**
-
-/* Program to design a half subtractor and full subtractor circuit and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
-*/24004630
 ```
-module exp_4 (df,bo,a,b,bin);
-output df;
-output bo;
-input a;
-input b;
-input bin;
-wire w1,w2,w3;
-assign w1=a^b;
-assign w2=(~a&b);
-assign w3=(~w1&bin);
-assign df=w1^bin;
-assign bo=w2|w3;
+Developed by: Joshua Clement D RegisterNumber:24004630
+```
+Full Adder
+```
+module fa(a,b,cin,sum,carry);
+input a,b,cin;
+output sum,carry;
+assign sum=( (a ^ b)^cin);
+assign carry= ( (a & b)| ( cin &(a ^ b )));
+endmodule
+```
+Full Subtractor 
+```
+module de42(a, b, bin, difference, borrow);
+    input a, b, bin;
+    output difference, borrow;
+
+    xor(difference, (a ^ b), bin);
+    or(borrow, (a & b), (bin & (a | b)));
 endmodule
 ```
 
 **RTL Schematic**
-![exp_4](https://github.com/user-attachments/assets/e0c8fa83-04e0-4b68-bfee-03d5d1c3770e)
 
+Full Adder 
+![WhatsApp Image 2024-11-28 at 10 47 05_6124aca3](https://github.com/user-attachments/assets/56271b1a-314b-4fbe-8abf-b46f6a7d8169)
+
+Full Subtractor
+![WhatsApp Image 2024-11-28 at 10 46 48_e8129483](https://github.com/user-attachments/assets/6b6317bd-c0a7-4c72-8cac-ab1171771310)
 
 **Output Timing Waveform**
-![Waveform](https://github.com/user-attachments/assets/055ad8d9-76d5-4f9b-9f7d-92bcaedf7e93)
 
+Full Adder
+![Screenshot 2024-11-28 102318](https://github.com/user-attachments/assets/d57f1ea2-7e03-4d6d-96a0-76de4d2adb99)
+
+Full Subtractor 
+![WhatsApp Image 2024-11-28 at 10 45 39_9042c4e1](https://github.com/user-attachments/assets/58d21a4e-7c6b-40c2-8b47-cce04047ed36)
 
 **Result:**
-
 Thus the Full Adder and Full Subtractor circuits are designed and the truth tables is verified using Quartus software.
 
 
